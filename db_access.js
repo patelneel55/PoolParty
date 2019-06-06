@@ -57,7 +57,7 @@ function addNewUser(em, nm, nu, pss, usr) {
     .then(function(docRef) {
 
         console.log("New Document: " + docRef.id);
-        return 'SUCCESS';
+        return docRef;
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
@@ -65,6 +65,28 @@ function addNewUser(em, nm, nu, pss, usr) {
     });
 }
 
+/**
+ * Update the user data in the database
+ * 
+ * @param {*} docID ID referring to the document
+ * @param {*} jsonData Updated JSON fields
+ */
+function updateUserData(docID, jsonData) {
+    db.collection("Users").doc(docID).update(jsonData)
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+        return 'ERROR: Invalid document id';
+    });
+}
+
+
+
 function test_data() {
     getData('test_username');
+}
+
+
+function initMap()
+{
+    var directionsService = new google.maps.DirectionsService;
 }
